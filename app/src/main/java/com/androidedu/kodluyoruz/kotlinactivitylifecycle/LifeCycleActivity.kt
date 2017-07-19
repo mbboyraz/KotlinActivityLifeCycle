@@ -1,15 +1,12 @@
 package com.androidedu.kodluyoruz.kotlinactivitylifecycle
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.AttributeSet
 import android.util.Log
 import android.view.Menu
-import android.view.View
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,12 +33,23 @@ class LifeCycleActivity : AppCompatActivity() {
      * @param savedInstanceState eğer Activity bir şekilde yeniden yaratılma ihtiyacı duymuşsa
      * onSaveInstanceState(Bundle) methodunun içerisinden sağlanan değerleri içerir. Aksi halde null döner.
      */
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//        printLog("onCreate1 setContentView öncesi")
-//        setContentView(R.layout.activity_life_cycle)
-//        printLog("onCreate1 setContentView sonrası")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        printLog("onCreate1 setContentView öncesi")
+        setContentView(R.layout.activity_life_cycle)
+        printLog("onCreate1 setContentView sonrası")
+    }
+
+    /**
+     * Activity'niz LayoutInflater ile doldurulurken çağrılır. onCreate ile benzer bir çalışma mantığı vardır.
+     * XML dosyasındaki UI elementlerini Activity class'ınıza bağlamak için kullanabilirsiniz.
+     * onCreate(Bundle) ile UI elementlerine ulaşıyorsanız bunu tekrar onCreateView() ile yapmak anlamsızdır.
+     * Bu sebeple comment'lenmiştir.
+     */
+    //        override fun onCreateView(name: String?, context: Context?, attrs: AttributeSet?): View {
+//        printLog("onCreateView1")
+//        return super.onCreateView(name, context, attrs)
 //    }
 
     /**
@@ -269,14 +277,5 @@ class LifeCycleActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         printLog("onBackPressed")
-    }
-
-    /**
-     * Activity'niz LayoutInflater ile doldurulurken çağrılır. onCreate ile benzer bir çalışma mantığı vardır.
-     * XML dosyasındaki UI elementlerini Activity class'ınıza bağlamak için kullanabilirsiniz.
-     */
-    override fun onCreateView(name: String?, context: Context?, attrs: AttributeSet?): View {
-        printLog("onCreateView1")
-        return super.onCreateView(name, context, attrs)
     }
 }
